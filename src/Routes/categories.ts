@@ -3,7 +3,7 @@ import { Category } from "../entities/Category";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/categories", async (req, res) => {
   try {
     const categories = await Category.find({
       relations: { products: true },

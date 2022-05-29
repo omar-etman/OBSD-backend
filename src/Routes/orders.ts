@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 //get all orders
-router.get("/order", async (req, res) => {
+router.get("/orders", async (req, res) => {
     try {
       const orders = await Order.find({
         relations: { orderline: {product:true}  },
@@ -20,7 +20,7 @@ router.get("/order", async (req, res) => {
 
 
 //create order
-router.post("/order", async (req, res) => {
+router.post("/order/create", async (req, res) => {
     try {
       const { items, name, address, mobile, city } = req.body;
       const order = Order.create({
@@ -74,7 +74,7 @@ router.get("/order/:order_id", async (req, res) => {
 
 
 //get completed
-router.get("/order/completed", async (req, res) => {
+router.get("/orders/completed", async (req, res) => {
     try {
       const orders = await Order.find({
         where: { completed:true },
