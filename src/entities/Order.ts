@@ -1,7 +1,7 @@
 import {Entity, BaseEntity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn} from "typeorm"
 import { OrderLine } from "./OrderLine";
 
-@Entity('order')//to save it in the database in this case left empty cuz we won't be saving it there , not needed
+@Entity('order')
 export class Order extends BaseEntity {
     @PrimaryGeneratedColumn()
     id:number;
@@ -9,9 +9,7 @@ export class Order extends BaseEntity {
     @Column()
     name:string;
 
-    @Column({
-        unique: true,
-    })
+    @Column()
     mobile:string;
 
     @Column()

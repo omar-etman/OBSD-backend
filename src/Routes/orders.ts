@@ -21,30 +21,37 @@ router.get("/orders", async (req, res) => {
 
 //create order
 router.post("/order/create", async (req, res) => {
+    console.log('hi code')
     try {
-      const { items, name, address, mobile, city } = req.body;
+      
+      const { items, name, address, mobile, city, totalPrice } = req.body;
+      console.log({ items, name, address, mobile, city, totalPrice })
       const order = Order.create({
         name,
         address,
         mobile,
         city,
+        totalPrice
       });
       await order.save();
+      console.log('hi data')
       for (let i = 0; i < items.length; i++) {
 
         const item = items[i]
         const product = await Product.findOneBy({id: +item.id});
-    
+        console.log('hi error')
+
         if (!product) {
           return res.status(404).json({ msg: "not included" });
         }
         const orderline = OrderLine.create({
-            product,
+            product,//enti
             order,
-            quantity: +item.orderQty
+            quantity: +item.quantity
         })
         await orderline.save();
       }
+      // manipulate the returned data
       const createdOrder = await Order.find({
         where: { id: +order.id },
         relations: { orderline: true },
