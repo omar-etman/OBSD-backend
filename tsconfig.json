@@ -7,10 +7,12 @@
        ],
        "module": "commonjs",
        "moduleResolution": "node",
-       "outDir": "./build",
+       "outDir": "./dist/",
        "emitDecoratorMetadata": true,
        "experimentalDecorators": true,
        "sourceMap": true,
        "esModuleInterop": true,
     }
  }
+
+ 

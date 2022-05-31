@@ -104,7 +104,7 @@ router.get("/order/:order_id/completed", async (req, res) => {
       if (!order) {
         return res.status(404).json({ msg: "order doesn't exist" });
       }
-      order.completed=true
+      order.completed=!order.completed
       await  order.save();
     const updatedOrders = await Order.find({
       where: { id: +order_id },
